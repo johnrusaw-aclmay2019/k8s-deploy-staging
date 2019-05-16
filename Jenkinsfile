@@ -62,7 +62,6 @@ pipeline {
     }
     
     // DO NOT uncomment until 10_01 Lab
-    /* 
     stage('Staging Warm Up') {
       steps {
         echo "Waiting for the service to start..."
@@ -83,7 +82,7 @@ pipeline {
           script {
             def status = executeJMeter ( 
               scriptName: "jmeter/front-end_e2e_load.jmx",
-              resultsDir: "e2eCheck_${env.APP_NAME}_warmup",
+              resultsDir: "e2eCheck_${env.APP_NAME}_${BUILD_NUMBER}_warmup",
               serverUrl: "front-end.staging", 
               serverPort: 8080,
               checkPath: '/health',
@@ -114,7 +113,7 @@ pipeline {
             script {
               def status = executeJMeter ( 
                 scriptName: "jmeter/front-end_e2e_load.jmx",
-                resultsDir: "e2eCheck_${env.APP_NAME}",
+                resultsDir: "e2eCheck_${env.APP_NAME}_${BUILD_NUMBER}",
                 serverUrl: "front-end.staging", 
                 serverPort: 8080,
                 checkPath: '/health',
@@ -139,6 +138,5 @@ pipeline {
         )
       }
     }
-    */
   }
 }
